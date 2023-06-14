@@ -8,7 +8,7 @@ type: generic
 description: Specification for digital objects commonly used in machine learning solutions.
 lead: 
 - person: LeylaGarcia
-- person: 
+- person: AlbanGaignard
 email: enquiries@bioschemas.org
 issues: https://github.com/Bioschemas/bioschemas/issues?q=is%3Aopen+label%3A%22type%3A%20Dataset%22,%22type%3A%20tool%22
 folder: 
@@ -30,6 +30,7 @@ specifications:
 
 
 members:
+- OlgaXimenaGiraldo
 
 ---
 
