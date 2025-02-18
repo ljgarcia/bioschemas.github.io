@@ -37,13 +37,12 @@
   <script defer src="{{'assets/js/all.min.js' | relative_url }}"></script>
   <!-- Signposting -->
   {% if page.signposting %}
-  {% for items in page.signposting %}
-    {% if item.citeas != nil %}
-    <link rel="cite-as" href="{{item.citeas}}"> 
-    {% elsif item.describedby != nil %}
-    <link rel="type" type="application/ld+json" href="{{item.citeas}}"> 
-    {% else %}
-    <link rel="{{item.value}}" href="{{item.citeas}}"> 
-    {% endif %}
-  {% endfor %}
+    {% for item in page.signposting %}
+      {% if item.rel == "type" %}
+      <link rel="{{item.rel}}" type="application/ld+json" href="{{item.link}}"> 
+      {% else %}
+      <link rel="{{item.rel}}" href="{{item.link}}"> 
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 </head>
