@@ -35,4 +35,15 @@
   <script src="{{ 'assets/js/bootstrap.bundle.min.js' | relative_url }}"></script>
   <script src="{{ 'assets/js/toc.js' | relative_url }}"></script>
   <script defer src="{{'assets/js/all.min.js' | relative_url }}"></script>
+  <!-- Signposting -->
+  {% if page.signposting %}
+  {% for items in page.signposting %}
+    {% if item.citeas != nil %}
+    <link rel="cite-as" href="{{item.citeas}}"> 
+    {% elsif item.describedby != nil %}
+    <link rel="type" type="application/ld+json" href="{{item.citeas}}"> 
+    {% else %}
+    <link rel="{{item.value}}" href="{{item.citeas}}"> 
+    {% endif %}
+  {% endfor %}
 </head>
