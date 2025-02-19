@@ -31,11 +31,20 @@ signposting:
 <p>
     <strong>Technical corner</strong>
 <br />    
-    Bioschemas latest released types are provided in a machine-actionable format (JSON-LD) 
-    <a href="/types/bioschemas_types.json" target="_blank">here</a>. 
+    Bioschemas latest released types are provided in machine-actionable formats in  
+    <a href="/types/bioschemas_types.jsonld" target="_blank">JSON-LD</a> and
+    <a href="/types/bioschemas_types.ttl" target="_blank">Turtle</a>. 
     The canonical URL for Bioschemas types is 'https://bioschemas.org/terms/' and we use the namespace 'bioschemas'.
-<br />    
-    To make it easier for machines, we use FAIR Signposting to point to the JSON-LD files from the HTML landing pages.
+<br /> 
+    The latest drafts are also provided in 
+    <a href="/types/bioschemas_draft_types.jsonld" target="_blank">JSON-LD</a> and
+    <a href="/types/bioschemas_draft_types.ttl" target="_blank">Turtle</a>. 
+    For draft types, we use the canonical URL 'https://bioschemas.org/draft_terms/' and the namespace 'bioschemas_draft'.
+<br /> 
+    To make it easier for machines, we use FAIR Signposting to point to the released types JSON-LD 
+    file from the HTML landing pages. We do not support Signposting for draft types.
+<br /> 
+    In both cases, released types and draft types, content negotiation is supported through https://w3id.org. 
 </p>
 <br />
 {% assign dep_types = site.data.type_versions | where: 'status', 'deprecated' %}
