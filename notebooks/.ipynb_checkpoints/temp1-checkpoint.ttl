@@ -1,0 +1,435 @@
+@prefix bioschemas: <https://bioschemas.org/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+
+bioschemas:bioChemInteraction a bioschemas:BioChemEntity ;
+    rdfs:label "bioChemInteraction" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "A BioChemEntity that is know to interact with this item." ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+bioschemas:bioChemSimilarity a bioschemas:BioChemEntity ;
+    rdfs:label "bioChemSimilarity" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "A similar molecular entity, e.g., obtained by fingerprint similarity algorithm." ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+bioschemas:hasBioChemEntityPart a bioschemas:BioChemEntity ;
+    rdfs:label "hasBioChemEntityPart" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Indicates a BioChemEntity that (in some sense) has this BioChemEntity as a part. Inverse property: isPartOfBioChemEntity" ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+bioschemas:hasRepresentation a bioschemas:BioChemEntity ;
+    rdfs:label "hasRepresentation" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "A common representation such as a protein sequence or chemical structure for this entity. For images use schema.org/image." ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+bioschemas:isPartOfBioChemEntity a bioschemas:BioChemEntity ;
+    rdfs:label "isPartOfBioChemEntity" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Indicates a BioChemEntity that is (in some sense) a part of this BioChemEntity. Inverse property: hasBioChemEntityPart" ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+dct:conformsTo a schema:CreativeWork,
+        schema:Text,
+        schema:Thing ;
+    rdfs:label "conformsTo" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Used to state the Bioschemas profile that the markup relates to. The versioned URL of the profile must be used. Note that we use a CURIE in the table here but the full URL for Dublin Core terms must be used in the markup (http://purl.org/dc/terms/conformsTo), see example." ;
+    schema:domainIncludes bioschemas:BioChemEntity,
+        bioschemas:BioSample,
+        bioschemas:ChemicalSubstance,
+        bioschemas:ComputationalWorkflow,
+        bioschemas:FormalParameter,
+        bioschemas:Gene,
+        bioschemas:MolecularEntity,
+        bioschemas:Protein,
+        bioschemas:Taxon,
+        bioschemas:TaxonName .
+
+bioschemas:additionalProperty a schema:PropertyValue ;
+    rdfs:label "additionalProperty" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org. Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. http://schema.org/width, http://schema.org/color, http://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism." ;
+    schema:domainIncludes bioschemas:BioSample ;
+    schema:sameAs schema:additionalProperty .
+
+bioschemas:alternateScientificName a bioschemas:TaxonName,
+        schema:Text,
+        schema:URL ;
+    rdfs:label "alternateScientificName" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "A TaxonName representing a scientific name, with authorship and date information if known, of a synonym of the currently valid (zoological) or accepted (botanical) name." ;
+    schema:domainIncludes bioschemas:Taxon .
+
+bioschemas:alternativeOf a schema:Gene ;
+    rdfs:label "alternativeOf" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Another gene which is a variation of this one." ;
+    schema:domainIncludes bioschemas:Gene .
+
+bioschemas:associatedDisease a schema:MedicalCondition,
+        schema:PropertyValue,
+        schema:URL ;
+    rdfs:label "associatedDisease" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Disease associated to this BioChemEntity. Such a disease can be a MedicalCondition or a URL. If you want to add an evidence supporting the association, please use PropertyValue." ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+bioschemas:biologicalRole a schema:DefinedTerm ;
+    rdfs:label "biologicalRole" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "A role played by the molecular entity within a biological context." ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+bioschemas:chemicalComposition a schema:Text ;
+    rdfs:label "chemicalComposition" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The chemical composition describes the identity and relative ratio of the chemical elements that make up the substance. For substances this often cannot be accurately determined, an approximation is acceptable." ;
+    schema:domainIncludes bioschemas:ChemicalSubstance .
+
+bioschemas:chemicalRole a schema:DefinedTerm ;
+    rdfs:label "chemicalRole" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "A role played by the BioChemEntity within a chemical context. A role played by the molecular entity within a chemical context." ;
+    schema:domainIncludes bioschemas:ChemicalSubstance,
+        bioschemas:MolecularEntity .
+
+bioschemas:childTaxon a schema:Taxon,
+        schema:Text,
+        schema:URL ;
+    rdfs:label "childTaxon" ;
+    rdf:type rdf:Property ;
+    rdfs:comment """Closest child taxa of the taxon in question.
+Inverse property: parentTaxon Direct, most proximate lower-rank child taxa""" ;
+    schema:domainIncludes bioschemas:Taxon .
+
+bioschemas:collector a schema:Organization,
+        schema:Person ;
+    rdfs:label "collector" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The Person or Organization who collected the Sample. " ;
+    schema:domainIncludes bioschemas:BioSample .
+
+bioschemas:custodian a schema:Organization,
+        schema:Person ;
+    rdfs:label "custodian" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The Person or Organization who is responsible for the Sample." ;
+    schema:domainIncludes bioschemas:BioSample .
+
+bioschemas:dateCreated a schema:Date ;
+    rdfs:label "dateCreated" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The date on which the CreativeWork was created or the item was added to a DataFeed. " ;
+    schema:domainIncludes bioschemas:BioSample ;
+    schema:sameAs schema:dateCreated .
+
+bioschemas:defaultValue a schema:Text,
+        schema:Thing ;
+    rdfs:label "defaultValue" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The default value for the FormalParameter. This is commonly only used for Inputs." ;
+    schema:domainIncludes bioschemas:FormalParameter .
+
+bioschemas:documentation a schema:CreativeWork,
+        schema:URL ;
+    rdfs:label "documentation" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Documentation describing the ComputationalWorkflow and its use." ;
+    schema:domainIncludes bioschemas:ComputationalWorkflow .
+
+bioschemas:encodesBioChemEntity a schema:BioChemEntity ;
+    rdfs:label "encodesBioChemEntity" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Another BioChemEntity encoded by this one. Inverse property: isEncodedByBioChemEntity." ;
+    schema:domainIncludes bioschemas:Gene .
+
+bioschemas:encodingFormat a schema:Text,
+        schema:URL ;
+    rdfs:label "encodingFormat" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "URLs to accepted formats.  It is strongly recommented that this be specified. If it is not specified, then nothing should be assumed about the encoding formats of the FormalParameter. Recommended ontology: http://edamontology.org/format_1915" ;
+    schema:domainIncludes bioschemas:FormalParameter .
+
+bioschemas:expressedIn a schema:AnatomicalStructure,
+        schema:AnatomicalSystem,
+        schema:BioChemEntity,
+        schema:DefinedTerm ;
+    rdfs:label "expressedIn" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Tissue, organ, biological sample, etc in which activity of this gene has been observed experimentally. For example brain, digestive system." ;
+    schema:domainIncludes bioschemas:Gene .
+
+bioschemas:funding a schema:Grant ;
+    rdfs:label "funding" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The funding for the workflow" ;
+    schema:domainIncludes bioschemas:ComputationalWorkflow ;
+    schema:sameAs schema:funding .
+
+bioschemas:gender a schema:GenderType,
+        schema:Text ;
+    rdfs:label "gender" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Gender of the person. While http://schema.org/Male and http://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender" ;
+    schema:domainIncludes bioschemas:BioSample ;
+    schema:sameAs schema:gender .
+
+bioschemas:hasBioPolymerSequence a schema:Text ;
+    rdfs:label "hasBioPolymerSequence" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "A symbolic representation of a BioChemEnity. For example, a nucleotide sequence of a Gene or an amino acid sequence of a Protein." ;
+    schema:domainIncludes bioschemas:Gene,
+        bioschemas:Protein .
+
+bioschemas:hasMolecularFunction a schema:DefinedTerm,
+        schema:PropertyValue,
+        schema:URL ;
+    rdfs:label "hasMolecularFunction" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Molecular function performed by this BioChemEntity; please use PropertyValue if you want to include any evidence." ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+bioschemas:hasStatus a schema:Text ;
+    rdfs:label "hasStatus" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Schema:  One of pseudogene, dead, killed, live, predicted, suppressed." ;
+    schema:domainIncludes bioschemas:Gene .
+
+bioschemas:inChI a schema:Text ;
+    rdfs:label "inChI" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Non-proprietary identifier for molecular entity that can be used in printed and electronic data sources thus enabling easier linking of diverse data compilations." ;
+    schema:domainIncludes bioschemas:MolecularEntity .
+
+bioschemas:inChIKey a schema:Text ;
+    rdfs:label "inChIKey" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "InChIKey is a hashed version of the full InChI (using the SHA-256 algorithm)." ;
+    schema:domainIncludes bioschemas:MolecularEntity .
+
+bioschemas:input a bioschemas:FormalParameter ;
+    rdfs:label "input" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "An input required to use the computational workflow (eg. Excel spreadsheet, BAM file)" ;
+    schema:domainIncludes bioschemas:ComputationalWorkflow .
+
+bioschemas:isControl a schema:Boolean ;
+    rdfs:label "isControl" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Indicates whether the sample is being used as a normal control, may be in combination with another sample." ;
+    schema:domainIncludes bioschemas:BioSample .
+
+bioschemas:isEncodedByBioChemEntity a bioschemas:Gene ;
+    rdfs:label "isEncodedByBioChemEntity" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Another BioChemEntity encoding this one. Inverse property: encodesBioChemEntity." ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+bioschemas:isInvolvedInBiologicalProcess a schema:DefinedTerm,
+        schema:PropertyValue,
+        schema:URL ;
+    rdfs:label "isInvolvedInBiologicalProcess" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Biological process this BioChemEntity is involved in; please use PropertyValue if you want to include any evidence." ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+bioschemas:isLocatedInSubcellularLocation a schema:DefinedTerm,
+        schema:PropertyValue,
+        schema:URL ;
+    rdfs:label "isLocatedInSubcellularLocation" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Subcellular location where this BioChemEntity is located; please use PropertyValue if you want to include any evidence." ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+bioschemas:itemLocation a schema:Place,
+        schema:PostalAddress,
+        schema:Text ;
+    rdfs:label "itemLocation" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Current location of the item. " ;
+    schema:domainIncludes bioschemas:BioSample .
+
+bioschemas:iupacName a schema:Text ;
+    rdfs:label "iupacName" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Systematic method of naming chemical compounds as recommended by the International Union of Pure and Applied Chemistry (IUPAC)." ;
+    schema:domainIncludes bioschemas:MolecularEntity .
+
+bioschemas:locationCreated a schema:Place ;
+    rdfs:label "locationCreated" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The location where the CreativeWork was created, which may not be the same as the location depicted in the CreativeWork. " ;
+    schema:domainIncludes bioschemas:BioSample ;
+    schema:sameAs schema:locationCreated .
+
+bioschemas:molecularFormula a schema:Text ;
+    rdfs:label "molecularFormula" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The empirical formula is the simplest whole number ratio of all the atoms in a molecule." ;
+    schema:domainIncludes bioschemas:MolecularEntity .
+
+bioschemas:molecularWeight a schema:QuantitativeValue,
+        schema:Text ;
+    rdfs:label "molecularWeight" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "This is the molecular weight of the entity being described, not of the parent. Units should be included in the form '<Number> <unit>', for example '12 amu' or as '<QuantitativeValue>." ;
+    schema:domainIncludes bioschemas:MolecularEntity .
+
+bioschemas:monoisotopicMolecularWeight a schema:QuantitativeValue,
+        schema:Text ;
+    rdfs:label "monoisotopicMolecularWeight" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The monoisotopic mass is the sum of the masses of the atoms in a molecule using the unbound, ground-state, rest mass of the principal (most abundant) isotope for each element instead of the isotopic average mass. Please include the units the form '<Number> <unit>', for example '770.230488 g/mol' or as '<QuantitativeValue>." ;
+    schema:domainIncludes bioschemas:MolecularEntity .
+
+bioschemas:output a bioschemas:FormalParameter ;
+    rdfs:label "output" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "An output produced by the workflow" ;
+    schema:domainIncludes bioschemas:ComputationalWorkflow .
+
+bioschemas:parentTaxon a schema:Taxon,
+        schema:Text,
+        schema:URL ;
+    rdfs:label "parentTaxon" ;
+    rdf:type rdf:Property ;
+    rdfs:comment """Closest parent taxon of the taxon in question.
+Inverse property: childTaxon Direct, most proximate higher-rank parent taxon""" ;
+    schema:domainIncludes bioschemas:Taxon .
+
+bioschemas:potentialUse a schema:DefinedTerm ;
+    rdfs:label "potentialUse" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Intended use of the BioChemEntity by humans. " ;
+    schema:domainIncludes bioschemas:ChemicalSubstance,
+        bioschemas:MolecularEntity .
+
+bioschemas:samplingAge a schema:Integer ;
+    rdfs:label "samplingAge" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The age of the object when the Sample was created. " ;
+    schema:domainIncludes bioschemas:BioSample .
+
+bioschemas:scientificName a bioschemas:TaxonName,
+        schema:Text,
+        schema:URL ;
+    rdfs:label "scientificName" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "A TaxonName representing the currently valid (zoological) or accepted (botanical) name for that taxon." ;
+    schema:domainIncludes bioschemas:Taxon .
+
+bioschemas:smiles a schema:Text ;
+    rdfs:label "smiles" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "A specification in form of a line notation for describing the structure of chemical species using short ASCII strings." ;
+    schema:domainIncludes bioschemas:MolecularEntity .
+
+bioschemas:softwareRequirements a schema:Text,
+        schema:URL ;
+    rdfs:label "softwareRequirements" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "Renaming schema.org/requirements as softwareRequirements. Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime). Supersedes requirements. " ;
+    schema:domainIncludes bioschemas:ComputationalWorkflow ;
+    schema:sameAs schema:softwareRequirements .
+
+bioschemas:taxonRank a schema:PropertyValue,
+        schema:Text,
+        schema:URL ;
+    rdfs:label "taxonRank" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary (e.g. the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs) " ;
+    schema:domainIncludes bioschemas:Taxon,
+        bioschemas:TaxonName .
+
+bioschemas:taxonomicRange a bioschemas:Taxon,
+        schema:DefinedTerm,
+        schema:PropertyValue,
+        schema:URL ;
+    rdfs:label "taxonomicRange" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "The taxonomic grouping of the organism that expresses, encodes, or in someway related to the BioChemEntity." ;
+    schema:domainIncludes bioschemas:BioChemEntity .
+
+bioschemas:valueRequired a schema:Boolean ;
+    rdfs:label "valueRequired" ;
+    rdf:type rdf:Property ;
+    rdfs:comment "If the FormalParameter must be specified. This is commonly only used for Inputs" ;
+    schema:domainIncludes bioschemas:FormalParameter .
+
+bioschemas:Protein rdfs:label "Protein" ;
+    rdf:type rdfs:Class ;
+    rdfs:comment "Protein is here used in its widest possible definition, as classes of amino acid based molecules. Amyloid-beta Protein in human (UniProt P05067), eukaryota (e.g. an OrthoDB group) or even a single molecule that one can point to are all of type schema:Protein. A protein can thus be a subclass of another protein, e.g. schema:Protein as a UniProt record can have multiple isoforms inside it which would also be schema:Protein. They can be imagined, synthetic, hypothetical or naturally occurring. This version has been added to schema.org as a pending type." ;
+    rdfs:subClassOf schema:BioChemEntity ;
+    schema:schemaVersion "https://bioschemas.org/types/Protein/0.3-RELEASE-2019_09_02",
+        "https://github.com/BioSchemas/specifications/tree/master/Protein/jsonld/type/Protein_v0.3-RELEASE-2019_09_02.json" .
+
+bioschemas:ChemicalSubstance rdfs:label "ChemicalSubstance" ;
+    rdf:type rdfs:Class ;
+    rdfs:comment "A chemical substance is 'a portion of matter of constant composition, composed of molecular entities of the same type or of different types' (source: ChEBI:59999). Version: 0.3-RELEASE-2019_09_02. This version is was released as a pending class as of schema.org version 13" ;
+    rdfs:subClassOf schema:BioChemEntity ;
+    schema:schemaVersion "https://bioschemas.org/types/ChemicalSubstance/0.3-RELEASE-2019_09_02",
+        "https://github.com/BioSchemas/specifications/tree/master/ChemicalSubstance/jsonld/type/ChemicalSubstance_v0.3-RELEASE-2019_09_02.json" .
+
+bioschemas:TaxonName rdfs:label "TaxonName" ;
+    rdf:type rdfs:Class ;
+    rdfs:comment "A name of a biological taxon, may it be valid (zoology) / accepted (botany) or not. Version: 1.0-RELEASE" ;
+    rdfs:subClassOf schema:CreativeWork ;
+    schema:schemaVersion "https://bioschemas.org/types/TaxonName/1.0-RELEASE",
+        "https://github.com/BioSchemas/specifications/blob/master/TaxonName/jsonld/type/TaxonName_v1.0-RELEASE.json" .
+
+bioschemas:ComputationalWorkflow rdfs:label "ComputationalWorkflow" ;
+    rdf:type rdfs:Class ;
+    rdfs:comment "A computational workflow consists of an orchestrated and repeatable pattern of activity enabled by the systematic organization of resources into processes that transform materials, provide services, or process information (source Wikipedia.org). It is executed by a computational process and is thus distinct from laboratory or business workflows. version 1.0-RELEASE" ;
+    rdfs:subClassOf schema:SoftwareSourceCode ;
+    schema:schemaVersion "https://bioschemas.org/types/ComputationalWorkflow/1.0-RELEASE",
+        "https://github.com/BioSchemas/specifications/blob/master/ComputationalWorkflow/jsonld/type/ComputationalWorkflow_v1.0-RELEASE.json" .
+
+bioschemas:FormalParameter rdfs:label "FormalParameter" ;
+    rdf:type rdfs:Class ;
+    rdfs:comment "A FormalParameter is an identified variable used to stand for the actual value(s) that are consumed/produced by a set of steps. Version: 1.0-RELEASE (09 March 2021) " ;
+    rdfs:subClassOf schema:Intangible ;
+    schema:schemaVersion "https://bioschemas.org/types/FormalParameter/1.0-RELEASE",
+        "https://github.com/BioSchemas/specifications/blob/master/FormalParameter/jsonld/type/FormalParameter_v1.0-RELEASE.json" .
+
+bioschemas:Gene rdfs:label "Gene" ;
+    rdf:type rdfs:Class ;
+    rdfs:comment "A discrete unit of inheritance which affects one or more biological traits (Source: https://en.wikipedia.org/wiki/Gene). Examples include FOXP2 (Forkhead box protein P2), SCARNA21 (small Cajal body-specific RNA 21), A- (agouti genotype). Note, this version of the type has been added as a pending class in schema.org." ;
+    rdfs:subClassOf schema:BioChemEntity ;
+    schema:schemaVersion "https://bioschemas.org/types/Gene/0.3-RELEASE-2019_09_02",
+        "https://github.com/BioSchemas/specifications/tree/master/Gene/jsonld/type/Gene_v0.3-RELEASE-2019_09_02.json" .
+
+bioschemas:Taxon rdfs:label "Taxon" ;
+    rdf:type rdfs:Class ;
+    rdfs:comment "A set of organisms asserted to represent a natural cohesive biological unit. Version: 1.0-RELEASE" ;
+    rdfs:subClassOf schema:Thing ;
+    schema:schemaVersion "https://bioschemas.org/types/Taxon/1.0-RELEASE",
+        "https://github.com/BioSchemas/specifications/blob/master/Taxon/jsonld/type/Taxon_v1.0-RELEASE.json" .
+
+bioschemas:BioSample rdfs:label "BioSample" ;
+    rdf:type rdfs:Class ;
+    rdfs:comment """A biological material entity that is representative of a whole.
+Comments: Typically samples are intended to be representative of the whole or aspects thereof. Examples of samples include biomedical samples (blood, urine) and plant specimens held at herbaria. Version 0.1-RELEASE. Note, the parent class for this schema has been updated to a pending class in schema.org.""" ;
+    rdfs:subClassOf schema:BioChemEntity ;
+    schema:schemaVersion "https://bioschemas.org/types/BioSample/0.1-RELEASE",
+        "https://github.com/BioSchemas/specifications/tree/master/BioSample/jsonld/type/BioSample_v0.1-RELEASE.json" .
+
+bioschemas:MolecularEntity rdfs:label "MolecularEntity" ;
+    rdf:type rdfs:Class ;
+    rdfs:comment "Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity. (Source: ChEBI:23367). Note, this version has been updated to a pending class in schema.org." ;
+    rdfs:subClassOf schema:BioChemEntity ;
+    schema:schemaVersion "https://bioschemas.org/types/MolecularEntity/0.3-RELEASE-2019_09_02",
+        "https://github.com/BioSchemas/specifications/tree/master/MolecularEntity/jsonld/type/MolecularEntity_v0.3-RELEASE-2019_09_02.json" .
+
+bioschemas:BioChemEntity rdfs:label "BioChemEntity" ;
+    rdf:type rdfs:Class ;
+    rdfs:comment "Any biological, chemical, or biochemical thing. For example: a protein; a gene; a chemical; a synthetic chemical. Note, this version (0.7-RELEASE) is the version that is currently pending on schema.org" ;
+    rdfs:subClassOf schema:Thing ;
+    schema:schemaVersion "https://bioschemas.org/types/BioChemEntity/0.7-RELEASE",
+        "https://github.com/BioSchemas/specifications/tree/master/BioChemEntity/jsonld/type/BioChemEntity_v0.7-RELEASE.json" .
+
